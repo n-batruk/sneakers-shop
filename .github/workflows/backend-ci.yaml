@@ -1,0 +1,41 @@
+name: Continous Integration for Backend
+
+on:
+    pull_request:
+        branches:
+            - main
+        paths:
+            -'backend/**'
+    push:
+        branches:
+            - dev
+        paths:
+            - 'backend/**'
+
+jobs:
+    test:
+        name: 'Run Tests'
+        runs-on: ubuntu-latest
+        steps:
+            - name: 'Checkout repository'
+              uses: actions/checkout@v2
+
+            - name: 'Install Dependencies'
+              uses: npm install
+
+            - name: 'Run Tests'
+              uses: npm run test
+    
+    lint:
+        name: 'Run Linter'
+        runs-on: ubuntu-latest
+        steps:
+            - name: 'Checkout repository'
+              uses: actions/checkout@v2
+
+            - name: 'Install Dependencies'
+              uses: npm install
+
+            - name: 'Run Linter'
+              uses: npm run lint
+              

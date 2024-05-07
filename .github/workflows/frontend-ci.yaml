@@ -1,0 +1,28 @@
+name: Continous Integration for Frontend
+
+on:
+  pull_request:
+      branches: 
+        - main
+      paths: 
+        - 'frontend/**'
+  push:
+      branches:
+        - dev
+      paths:
+        - 'frontend/**'
+
+jobs:
+
+  lint:
+    name: 'Run linter'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout repository'
+        uses: actions/checkout@v2
+
+      - name: 'Install Dependencies'
+        uses: npm install
+
+      - name: 'Run Linter'
+        uses: npm run lint
