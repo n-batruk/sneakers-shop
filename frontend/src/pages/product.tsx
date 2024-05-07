@@ -9,7 +9,7 @@ import MyButton from "@/components/ui/button";
 import { useOrderStore } from "@/store/order.store";
 
 function ProductPage() {
-  let { productId } = useParams();
+  const { productId } = useParams();
 
   const { isSuccess, data } = useQuery({
     queryKey: [QUERY_KEYS.PRODUCT],

@@ -3,7 +3,7 @@ import { cn } from "@/lib/cn";
 import OrderProductCard from "../cards/order-product-card";
 import { useOrderStore } from "@/store/order.store";
 
-type Props = ComponentPropsWithRef<"div"> & {};
+type Props = ComponentPropsWithRef<"div"> & unknown;
 const OrderProductCards = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const { className, ...otherProps } = props;
   const [orderProducts] = useOrderStore((state) => [state.orderProducts]);
