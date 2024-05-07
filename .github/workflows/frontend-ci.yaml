@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: 'Install Dependencies'
-        uses: npm install
+        run: npm install
 
       - name: 'Run Linter'
-        uses: npm run lint
+        run: npm run lint

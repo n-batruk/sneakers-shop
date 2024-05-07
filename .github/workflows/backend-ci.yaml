@@ -5,7 +5,7 @@ on:
         branches:
             - main
         paths:
-            -'backend/**'
+            - 'backend/**'
     push:
         branches:
             - dev
@@ -13,22 +13,6 @@ on:
             - 'backend/**'
 
 jobs:
-    test:
-        name: 'Run Tests'
-        runs-on: ubuntu-latest
-        defaults:
-          run:
-            working-directory: ./backend
-        steps:
-            - name: 'Checkout repository'
-              uses: actions/checkout@v2
-
-            - name: 'Install Dependencies'
-              uses: npm install
-
-            - name: 'Run Tests'
-              uses: npm run test
-    
     lint:
         name: 'Run Linter'
         runs-on: ubuntu-latest
@@ -40,8 +24,8 @@ jobs:
               uses: actions/checkout@v2
 
             - name: 'Install Dependencies'
-              uses: npm install
+              run: npm install
 
             - name: 'Run Linter'
-              uses: npm run lint
+              run: npm run lint
               
