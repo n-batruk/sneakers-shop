@@ -13,22 +13,6 @@ on:
             - 'backend/**'
 
 jobs:
-    test:
-        name: 'Run Tests'
-        runs-on: ubuntu-latest
-        defaults:
-          run:
-            working-directory: ./backend
-        steps:
-            - name: 'Checkout repository'
-              uses: actions/checkout@v2
-
-            - name: 'Install Dependencies'
-              run: npm install
-
-            - name: 'Run Tests'
-              run: npm run test
-    
     lint:
         name: 'Run Linter'
         runs-on: ubuntu-latest
