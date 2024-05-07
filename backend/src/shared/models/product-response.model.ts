@@ -13,9 +13,9 @@ export class ProductResponseModel {
     this.title = product.title;
     this.description = product.description;
     this.price = product.price;
-    this.image = product.image
-      ? `http://localhost:3000/${product.image}`
-      : null;
+    // this.image = product.image
+    //   ? `http://localhost:3000/${product.image}`
+    //   : null;
     this.created_at = product.created_at;
   }
 }

@@ -3,8 +3,6 @@ import { PrismaModule, loggingMiddleware } from 'nestjs-prisma';
 import { UserModule } from './modules/user/user.module';
 import { ProductModule } from './modules/product/product.module';
 import { OrderModule } from './modules/order/order.module';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
 import { AuthModule } from './modules/auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from './modules/jwt/jwt.module';
@@ -14,9 +12,9 @@ import { JwtModule } from './modules/jwt/jwt.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'),
-    }),
+    // ServeStaticModule.forRoot({
+    //   rootPath: join(__dirname, '..', 'public'),
+    // }),
     PrismaModule.forRoot({
       isGlobal: true,
       prismaServiceOptions: {

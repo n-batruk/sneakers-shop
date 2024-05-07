@@ -13,20 +13,22 @@ export const RouterRoutes = () => {
     <Routes>
       {user?.account_role === "ADMIN" ? (
         <Route path="/" element={<AdminPage />} />
-      ) : (
+      ) : null}
+
+      {user?.account_role === "CLIENT" || !token ? (
         <>
           <Route path="/" element={<MainPage />} />
-
           <Route path="/order" element={<OrderPage />} />
           <Route path="/product/:productId" element={<ProductPage />} />
-          {!token ? (
-            <>
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/registration" element={<RegistrationPage />} />
-            </>
-          ) : null}
         </>
-      )}
+      ) : null}
+
+      {!token ? (
+        <>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/registration" element={<RegistrationPage />} />
+        </>
+      ) : null}
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

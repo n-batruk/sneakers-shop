@@ -1,18 +1,11 @@
-import {
-  User,
-  Order,
-  Delivery,
-  Payment,
-  OrderProduct,
-  Product,
-  PaymentStatus,
-  DeliveryStatus,
-} from '@prisma/client';
+import { PaymentStatus, DeliveryStatus } from '@prisma/client';
 import { ProductResponseModel } from './product-response.model';
 import { UserResponseModel } from './user-response.model';
+import { OrderResponseInput } from 'src/modules/order/order.type';
 
 export class OrderResponseModel {
   public id: string;
+  public created_at: Date;
   public delivery: {
     delivery_address: string;
     status: DeliveryStatus;
@@ -32,17 +25,11 @@ export class OrderResponseModel {
   }[];
   public user: UserResponseModel;
 
-  constructor(
-    order: Order & {
-      delivery: Delivery;
-      payment: Payment;
-      products: (OrderProduct & { product: Product })[];
-      user: User;
-    },
-  ) {
+  constructor(order: OrderResponseInput) {
     this.id = order.id;
+    this.created_at = order.created_at;
     this.delivery = {
-      delivery_address: order.delivery.delivery_address,
+      delivery_address: order.delivery.address,
       status: order.delivery.status,
     };
     this.payment = {

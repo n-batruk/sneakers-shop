@@ -1,4 +1,3 @@
-import { Product } from "./product.type";
 import { User } from "./user.type";
 export const PaymentStatus = {
   ACCEPTED: "ACCEPTED",
@@ -16,13 +15,14 @@ export type DeliveryStatusType =
   (typeof DeliveryStatus)[keyof typeof DeliveryStatus];
 export type Order = {
   id: string;
+  created_at: Date;
   user: User;
   products: {
     id: string;
     title: string;
     description: string;
     price: number;
-    image: string | null;
+    // image: string | null;
     count: number;
     created_at: Date;
   }[];
@@ -31,7 +31,7 @@ export type Order = {
     status: PaymentStatusType;
   };
   delivery: {
-    delivery_address: string;
+    address: string;
     status: DeliveryStatusType;
   };
 };

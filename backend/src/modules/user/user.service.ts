@@ -6,14 +6,40 @@ import * as bcrypt from 'bcrypt';
 import { CreateUserSeedType } from './user.type';
 import { User } from '@prisma/client';
 import { UserResponseModel } from 'src/shared/models/user-response.model';
+import {
+  PaginateFunction,
+  PaginatedResult,
+  paginator,
+} from 'src/shared/utils/paginator.util';
+
+const paginate: PaginateFunction = paginator({ perPage: 6 });
 
 @Injectable()
 export class UserService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  public async getAllUsers(): Promise<UserResponseModel[]> {
-    const users = await this.prismaService.user.findMany();
-    return users.map((user) => new UserResponseModel(user));
+  public async getAllUsers(
+    page: string,
+    size: string,
+  ): Promise<PaginatedResult<UserResponseModel>> {
+    const result = await paginate<User, any>(
+      this.prismaService.user,
+      {
+        where: {
+          role: {
+            not: 'ADMIN',
+          },
+        },
+      },
+      {
+        page,
+        perPage: size,
+      },
+    );
+    return {
+      meta: result.meta,
+      data: result.data.map((user) => new UserResponseModel(user)),
+    };
   }
 
   public async findByEmail(email: string): Promise<User | null> {

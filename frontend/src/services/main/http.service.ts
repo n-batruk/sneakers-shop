@@ -7,11 +7,10 @@ export class HttpService {
   constructor(
     private readonly fetchingService: IHttpClient,
     private readonly baseUrl: string | undefined = import.meta.env
-      .VITE_BACKEND_URL
+      .VITE_BACKEND_URL,
   ) {
     this.fetchingService = fetchingService;
     this.baseUrl = baseUrl;
-    console.log("baseUrl", baseUrl);
   }
 
   public createQueryLink(base: string, args: IMap): string {
@@ -46,7 +45,7 @@ export class HttpService {
   public async post<T, TD>(
     url: string,
     data: TD,
-    config?: IHttpConfig
+    config?: IHttpConfig,
   ): Promise<T> {
     return this.fetchingService
       .post<IResponse<T>, TD>(this.getFullApiUrl(url), data, {
@@ -65,7 +64,7 @@ export class HttpService {
   public async put<T, TD>(
     url: string,
     data: TD,
-    config?: IHttpConfig
+    config?: IHttpConfig,
   ): Promise<T> {
     return this.fetchingService
       .put<IResponse<T>, TD>(this.getFullApiUrl(url), data, {
@@ -84,7 +83,7 @@ export class HttpService {
   public async patch<T, TD>(
     url: string,
     data: TD,
-    config?: IHttpConfig
+    config?: IHttpConfig,
   ): Promise<T> {
     return this.fetchingService
       .patch<IResponse<T>, TD>(this.getFullApiUrl(url), data, {

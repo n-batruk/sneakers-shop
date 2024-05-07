@@ -2,7 +2,6 @@ import Header from "../components/modules/header";
 import Footer from "../components/modules/footer";
 import { useOrderStore } from "@/store/order.store";
 import { useEffect, useState } from "react";
-import { useProductStore } from "@/store/products.store";
 import MyButton from "@/components/ui/button";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { productService } from "@/services/product/product.service";
@@ -28,10 +27,10 @@ import { MyInput } from "@/components/ui/input";
 
 function OrderPage() {
   const [open, setOpen] = useState(false);
-  const { data, refetch } = useQuery({
-    queryKey: [QUERY_KEYS.PRODUCTS],
-    queryFn: () => productService.getAllProducts(),
-    enabled: false,
+  const { data } = useQuery({
+    queryKey: [QUERY_KEYS.PRODUCTS, 0],
+    queryFn: () => productService.getAllProducts(0, 100),
+    enabled: true,
   });
 
   const { mutate } = useMutation({
@@ -45,10 +44,6 @@ function OrderPage() {
       toast.error(error?.response?.data?.message),
   });
   const [token] = useUserStore((state) => [state.token]);
-  const [products, setProducts] = useProductStore((state) => [
-    state.products,
-    state.setProducts,
-  ]);
   const [orderProducts, paymentAmount, setOrderProducts, clearOrderProducts] =
     useOrderStore((state) => [
       state.orderProducts,
@@ -56,21 +51,12 @@ function OrderPage() {
       state.setOrderProducts,
       state.clearOrderProducts,
     ]);
+
   useEffect(() => {
-    if (!products.length) {
-      refetch();
-    }
-  }, []);
-  useEffect(() => {
-    if (data) {
-      setProducts(data);
+    if (data?.data.length) {
+      setOrderProducts(data?.data ?? []);
     }
   }, [data]);
-  useEffect(() => {
-    if (products.length && !orderProducts.length) {
-      setOrderProducts(products);
-    }
-  }, [products]);
 
   const form = useForm({
     defaultValues: {

@@ -13,7 +13,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Get(SHARED_ROUTES.CHECK)
-  @UseGuards(JWTAuthGuard) // checks if the request is authenticated
+  @UseGuards(JWTAuthGuard)
   public async checkIsAuth(@Auth() auth: boolean) {
     return auth;
   }

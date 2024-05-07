@@ -6,6 +6,6 @@ export class SignInDto {
   public email!: string;
 
   @IsString()
-  @MinLength(8)
+  @MinLength(3)
   public password!: string;
 }

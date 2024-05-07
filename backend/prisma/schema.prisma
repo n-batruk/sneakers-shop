@@ -52,7 +52,7 @@ model Product {
   title       String  @unique @db.VarChar(50)
   description String? @db.VarChar(255)
   price       Float
-  image       String?
+  // image       String?
 
   orders OrderProduct[]
 }
@@ -103,6 +103,6 @@ model Delivery {
   order    Order  @relation(fields: [order_id], references: [id])
   order_id String @unique @db.Uuid
 
-  delivery_address String
-  status           DeliveryStatus
+  address String
+  status  DeliveryStatus
 }

@@ -21,7 +21,6 @@ import { Link } from "react-router-dom";
 import { useUserStore } from "@/store/user.store";
 import { useMutation } from "@tanstack/react-query";
 import { authService } from "@/services/auth/auth.service";
-import { useEffect } from "react";
 import { QUERY_KEYS } from "@/constants/app-keys.const";
 import { toast } from "sonner";
 import { AxiosError } from "axios";

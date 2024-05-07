@@ -3,5 +3,5 @@ export type OrderProduct = {
   count: number;
   product_id: string;
   title: string;
-  image?: string;
+  // image?: string;
 };

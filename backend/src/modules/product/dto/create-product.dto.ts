@@ -1,15 +1,15 @@
 import {
   IsNumber,
   IsOptional,
-  IsPositive,
   IsString,
   Length,
   MaxLength,
+  Min,
 } from 'class-validator';
 
 export class CreateProductDto {
   @IsNumber()
-  @IsPositive()
+  @Min(0)
   public price: number;
 
   @IsString()
@@ -21,7 +21,7 @@ export class CreateProductDto {
   @MaxLength(50)
   public description?: string;
 
-  @IsOptional()
-  @IsString()
-  public image?: string;
+  // @IsOptional()
+  // @IsString()
+  // public image?: string;
 }

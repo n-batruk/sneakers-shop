@@ -23,7 +23,7 @@ export const useOrderStore = create(
         set(() => ({
           orderProducts: products.map((product) => ({
             title: product.title,
-            image: product.image,
+            // image: product.image,
             count: 0,
             price: product.price,
             product_id: product.id,

@@ -1,4 +1,3 @@
-import { UserRoles } from '@prisma/client';
-import { CreateUserDto } from './dto/create-user.dto';
+import { User } from '@prisma/client';
 
-export type CreateUserSeedType = CreateUserDto & { role: UserRoles };
+export type CreateUserSeedType = Omit<User, 'created_at' | 'jwt'>;

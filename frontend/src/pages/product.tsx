@@ -6,7 +6,6 @@ import Footer from "../components/modules/footer";
 import { Link, useParams } from "react-router-dom";
 import MyHeading from "@/components/ui/heading";
 import MyButton from "@/components/ui/button";
-import { Star } from "lucide-react";
 import { useOrderStore } from "@/store/order.store";
 
 function ProductPage() {
@@ -38,36 +37,6 @@ function ProductPage() {
                   </MyHeading>
                 </div>
 
-                <div className="relative h-full w-full rounded-3xl px-40">
-                  <Star
-                    className={`absolute -z-10 h-full w-full -rotate-[55deg] fill-zinc-100 stroke-orange-100 px-4`}
-                  />
-                  <img
-                    src={data.image}
-                    alt="product"
-                    className={`-rotate-[15deg] transform px-8`}
-                  />
-                </div>
-                <div className="grid grid-cols-5">
-                  {[
-                    "rotate-[40deg]",
-                    "rotate-[20deg]",
-                    "rotate-[0deg]",
-                    "rotate-[15deg]",
-                    "rotate-[30deg]",
-                  ].map((val) => (
-                    <div className="relative h-full w-full rounded-3xl">
-                      <Star
-                        className={`absolute -z-10 h-full w-full -rotate-[55deg] fill-zinc-100 stroke-orange-100 px-4`}
-                      />
-                      <img
-                        src={data.image}
-                        alt="product"
-                        className={`${val} transform px-8`}
-                      />
-                    </div>
-                  ))}
-                </div>
                 <div className="flex justify-center">
                   <Link to={"/order"}>
                     <MyButton

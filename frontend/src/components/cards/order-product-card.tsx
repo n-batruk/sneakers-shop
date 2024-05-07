@@ -1,7 +1,6 @@
 import { cn } from "@/lib/cn";
 import { ComponentPropsWithRef, forwardRef } from "react";
 import MyHeading from "../ui/heading";
-import { ShoppingCart, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import MyButton from "../ui/button";
 import { OrderProduct } from "@/types/order-product.type";
@@ -27,14 +26,6 @@ const OrderProductCard = forwardRef<HTMLDivElement, Props>((props, ref) => {
       )}
       {...otherProps}
     >
-      <Link to={productLink} className="relative h-full w-full">
-        <Star className="absolute -z-10 h-full w-full -rotate-[55deg] fill-zinc-100 stroke-orange-100 px-4" />
-        <img
-          src={orderProduct.image}
-          alt="product"
-          className="-rotate-[16deg] scale-x-[-1] transform px-8"
-        />
-      </Link>
       <div>
         <Link to={productLink}>
           <MyHeading variant={"h6"} className="text-center">
